@@ -1,37 +1,12 @@
+import { HOME_STATS } from "@/data/home/stats";
 import { cn } from "@/lib/utils";
-import { Award, BookOpen, TrendingUp, Users } from "lucide-react";
 
 export default function HomeStats() {
     return (
         <>
             <section className="border-y bg-muted/30 py-14">
                 <div className="container grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {[
-                        {
-                            icon: BookOpen,
-                            label: "Expert Courses",
-                            value: "13+",
-                            accent: "text-primary bg-primary/10",
-                        },
-                        {
-                            icon: Users,
-                            label: "Active Learners",
-                            value: "2,800+",
-                            accent: "text-secondary bg-secondary/10",
-                        },
-                        {
-                            icon: Award,
-                            label: "Certificates",
-                            value: "1,200+",
-                            accent: "text-accent bg-accent/10",
-                        },
-                        {
-                            icon: TrendingUp,
-                            label: "Avg. Rating",
-                            value: "4.7/5",
-                            accent: "text-primary bg-primary/10",
-                        },
-                    ].map((stat) => (
+                    {HOME_STATS.map((stat) => (
                         <div
                             key={stat.label}
                             className="group flex flex-col items-center text-center"

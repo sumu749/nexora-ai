@@ -6,9 +6,6 @@ import { useQuery } from "@tanstack/react-query";
 import {
     ArrowRight,
     Sparkles,
-    BookOpen,
-    Users,
-    Award,
     TrendingUp,
     CheckCircle,
     Star,
@@ -18,7 +15,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
     CourseCard,
     CourseCardSkeleton,
