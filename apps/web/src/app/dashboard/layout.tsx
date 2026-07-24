@@ -6,6 +6,7 @@ import { DashboardSidebar } from "@/components/dashboard/sidebar";
 import { useUser, useClerk } from "@clerk/nextjs";
 import Link from "next/link";
 import { Menu } from "lucide-react";
+import Image from "next/image";
 
 export default function DashboardLayout({
     children,
@@ -68,7 +69,7 @@ export default function DashboardLayout({
                         <div className="relative">
                             <details className="relative">
                                 <summary className="flex items-center gap-2 cursor-pointer list-none">
-                                    <img
+                                    <Image
                                         src={
                                             user?.imageUrl ||
                                             "/avatar-placeholder.svg"
