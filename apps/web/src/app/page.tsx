@@ -12,6 +12,9 @@ import {
     Bot,
     MessageSquare,
     Zap,
+    CheckCircle2,
+    FileText,
+    Briefcase,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -147,74 +150,107 @@ export default function HomePage() {
                                         skillforge.ai/dashboard/chat
                                     </span>
                                 </div>
-                                <div className="p-5 space-y-4">
-                                    <div className="flex items-center gap-2 text-sm font-semibold">
-                                        <Bot className="h-4 w-4 text-primary" />
-                                        SkillForge AI Tutor
+                                <div className="p-6">
+                                    <h3 className="text-lg font-bold">
+                                        AI Career Dashboard
+                                    </h3>
+
+                                    <p className="mt-1 text-sm text-muted-foreground">
+                                        AI-powered insights for your learning
+                                        journey.
+                                    </p>
+                                    <div className="mt-6 grid grid-cols-2 gap-4">
+                                        <div className="rounded-xl border border-border bg-muted/30 p-4">
+                                            <p className="text-xs text-muted-foreground">
+                                                Resume Score
+                                            </p>
+                                            <p className="mt-2 text-2xl font-bold text-primary">
+                                                92%
+                                            </p>
+                                        </div>
+
+                                        <div className="rounded-xl border border-border bg-muted/30 p-4">
+                                            <p className="text-xs text-muted-foreground">
+                                                Interview Ready
+                                            </p>
+                                            <p className="mt-2 text-2xl font-bold text-primary">
+                                                84%
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className="flex gap-3">
-                                        <div className="h-7 w-7 shrink-0 rounded-full bg-muted flex items-center justify-center">
-                                            <MessageSquare className="h-3.5 w-3.5" />
+                                    <div className="mt-6">
+                                        <div className="mb-2 flex items-center justify-between">
+                                            <p className="text-sm font-medium">
+                                                Weekly Progress
+                                            </p>
+                                            <span className="text-sm text-primary font-semibold">
+                                                80%
+                                            </span>
                                         </div>
-                                        <div className="rounded-xl rounded-tl-sm bg-muted px-3.5 py-2.5 text-sm max-w-[85%]">
-                                            How do I structure a React Server
-                                            Component?
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-3 flex-row-reverse">
-                                        <div className="h-7 w-7 shrink-0 rounded-full bg-primary flex items-center justify-center">
-                                            <Sparkles className="h-3.5 w-3.5 text-primary-foreground" />
-                                        </div>
-                                        <div className="rounded-xl rounded-tr-sm bg-primary/10 px-3.5 py-2.5 text-sm max-w-[85%] leading-relaxed">
-                                            Server Components fetch data
-                                            directly on the server, no client JS
-                                            shipped. Here&apos;s a pattern used
-                                            in the Next.js course...
+
+                                        <div className="h-2 overflow-hidden rounded-full bg-muted">
+                                            <div className="h-full w-[80%] rounded-full bg-primary" />
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-2 pl-10">
-                                        <span className="h-1.5 w-1.5 rounded-full bg-primary/60 animate-pulse" />
-                                        <span className="h-1.5 w-1.5 rounded-full bg-primary/60 animate-pulse [animation-delay:150ms]" />
-                                        <span className="h-1.5 w-1.5 rounded-full bg-primary/60 animate-pulse [animation-delay:300ms]" />
+                                    <div className="mt-6">
+                                        <p className="mb-3 text-sm font-medium">
+                                            Next Recommendations
+                                        </p>
+
+                                        <div className="space-y-2">
+                                            <div className="flex items-center gap-2 text-sm">
+                                                <CheckCircle2 className="h-4 w-4 text-primary" />
+                                                <span>Advanced React</span>
+                                            </div>
+
+                                            <div className="flex items-center gap-2 text-sm">
+                                                <CheckCircle2 className="h-4 w-4 text-primary" />
+                                                <span>System Design</span>
+                                            </div>
+
+                                            <div className="flex items-center gap-2 text-sm">
+                                                <CheckCircle2 className="h-4 w-4 text-primary" />
+                                                <span>Mock Interview</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Floating stat chips */}
                             <div
-                                className="absolute -left-6 top-10 rounded-xl border border-border bg-card px-4 py-3 shadow-lg animate-in-up"
+                                className="absolute -left-6 -top-4 rounded-xl border border-border bg-card px-4 py-3 shadow-lg animate-in-up"
                                 style={{ animationDelay: "260ms" }}
                             >
                                 <div className="flex items-center gap-2">
-                                    <div className="h-8 w-8 rounded-lg bg-secondary/10 flex items-center justify-center">
-                                        <TrendingUp className="h-4 w-4 text-secondary" />
+                                    <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                                        <FileText className="h-4 w-4 text-primary" />
                                     </div>
+
                                     <div>
                                         <p className="text-xs text-muted-foreground">
-                                            Avg. Rating
+                                            Resume Score
                                         </p>
-                                        <p className="text-sm font-bold">
-                                            4.7 / 5
-                                        </p>
+
+                                        <p className="text-sm font-bold">92%</p>
                                     </div>
                                 </div>
                             </div>
-
                             <div
                                 className="absolute -right-4 -bottom-6 rounded-xl border border-border bg-card px-4 py-3 shadow-lg animate-in-up"
                                 style={{ animationDelay: "380ms" }}
                             >
                                 <div className="flex items-center gap-2">
-                                    <div className="h-8 w-8 rounded-lg bg-accent/10 flex items-center justify-center">
-                                        <Zap className="h-4 w-4 text-accent" />
+                                    <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                                        <Briefcase className="h-4 w-4 text-primary" />
                                     </div>
+
                                     <div>
                                         <p className="text-xs text-muted-foreground">
-                                            Instant Answers
+                                            Interview Ready
                                         </p>
-                                        <p className="text-sm font-bold">
-                                            &lt; 2s response
-                                        </p>
+
+                                        <p className="text-sm font-bold">84%</p>
                                     </div>
                                 </div>
                             </div>
