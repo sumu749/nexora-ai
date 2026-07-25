@@ -1,17 +1,11 @@
 "use client";
-
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {
     ArrowRight,
     Sparkles,
-    TrendingUp,
     CheckCircle,
-    Star,
-    Bot,
-    MessageSquare,
-    Zap,
     CheckCircle2,
     FileText,
     Briefcase,
@@ -28,7 +22,7 @@ import type { Course } from "@skillforge/shared";
 import HomeStats from "@/components/home/stats";
 import HomeCategories from "@/components/home/categories";
 import HomeTestimonials from "@/components/home/testimonials";
-import { PageContainer, Section } from "@/components/shared";
+import { PageContainer, Section, SectionHeading } from "@/components/shared";
 
 const heroSlides = [
     {
@@ -263,21 +257,15 @@ export default function HomePage() {
             <HomeStats />
 
             {/* Featured Courses */}
-            <section className="py-16">
-                <div className="container">
+            <Section>
+                <PageContainer>
                     <div className="flex items-center justify-between mb-8">
-                        <div>
-                            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-2">
-                                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                                Trending Now
-                            </span>
-                            <h2 className="text-3xl font-bold tracking-tight">
-                                Popular Courses
-                            </h2>
-                            <p className="text-muted-foreground mt-1">
-                                Start with our most-loved programs
-                            </p>
-                        </div>
+                        <SectionHeading
+                            eyebrow="Trending Now"
+                            title="Popular Courses"
+                            description="Start with our most-loved programs"
+                            className="!text-left !mx-0 max-w-none"
+                        />
                         <Link href="/explore">
                             <Button
                                 variant="outline"
@@ -297,8 +285,8 @@ export default function HomePage() {
                                   <CourseCard key={course.id} course={course} />
                               ))}
                     </div>
-                </div>
-            </section>
+                </PageContainer>
+            </Section>
 
             {/* AI Tutor Feature */}
             <section className="py-16 bg-muted/30">
