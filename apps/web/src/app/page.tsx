@@ -25,6 +25,7 @@ import type { Course } from "@skillforge/shared";
 import HomeStats from "@/components/home/stats";
 import HomeCategories from "@/components/home/categories";
 import HomeTestimonials from "@/components/home/testimonials";
+import { PageContainer, Section } from "@/components/shared";
 
 const heroSlides = [
     {
@@ -67,66 +68,68 @@ export default function HomePage() {
     return (
         <>
             {/* Hero */}
-            <section className="relative overflow-hidden">
+            <Section className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-mesh" />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
-                <div className="container relative py-20 lg:py-28">
+                <PageContainer>
                     <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
                         {/* Left: copy */}
                         <div className="max-w-2xl animate-in-up">
+                            {/* Badge */}
                             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary mb-6">
                                 <span className="relative flex h-2 w-2">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
                                     <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
                                 </span>
-                                AI-Powered Learning Platform
+                                Learn • Build • Get Hired
                             </span>
-                            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 min-h-[1px]">
-                                {heroSlides[activeSlide].title} with{" "}
+
+                            {/* Heading */}
+                            <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
+                                Build Your{" "}
                                 <span className="text-gradient">
-                                    SkillForge AI
+                                    Developer Career
                                 </span>
+                                <br />
+                                with AI
                             </h1>
-                            <p className="text-lg text-muted-foreground mb-8 max-w-xl leading-relaxed">
-                                {heroSlides[activeSlide].description}
+
+                            {/* Description */}
+                            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                                Master in-demand skills, build portfolio-ready
+                                projects, prepare for technical interviews, and
+                                accelerate your career with one AI-powered
+                                developer platform.
                             </p>
-                            <div className="flex flex-wrap gap-4">
+
+                            {/* CTA */}
+                            <div className="mt-8 flex flex-wrap gap-4">
                                 <Link href="/explore">
                                     <Button
                                         size="lg"
                                         className="group shadow-glow"
                                     >
-                                        Explore Courses
+                                        Start Learning
                                         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                                     </Button>
                                 </Link>
+
                                 <Link href="/dashboard/chat">
-                                    <Button
-                                        size="lg"
-                                        variant="secondary"
-                                        className="shadow-sm"
-                                    >
-                                        <Sparkles className="mr-2 h-4 w-4" />
+                                    <Button size="lg" variant="secondary">
                                         Try AI Tutor
                                     </Button>
                                 </Link>
                             </div>
-                            <div className="mt-8 flex flex-wrap gap-3 text-sm">
-                                {heroSlides.map((slide, index) => (
-                                    <button
-                                        key={slide.title}
-                                        type="button"
-                                        onClick={() => setActiveSlide(index)}
-                                        className={cn(
-                                            "rounded-full border px-4 py-2 transition-all duration-200",
-                                            index === activeSlide
-                                                ? "border-primary bg-primary/10 text-primary shadow-sm"
-                                                : "border-border bg-background/60 text-muted-foreground hover:border-primary/40 hover:text-primary",
-                                        )}
-                                    >
-                                        {slide.title}
-                                    </button>
-                                ))}
+
+                            {/* Trust Signals */}
+                            <div className="mt-8 flex flex-wrap gap-4 text-sm text-muted-foreground">
+                                <span>✓ AI Tutor</span>
+
+                                <span>✓ Interview Prep</span>
+
+                                <span>✓ Portfolio Projects</span>
+
+                                <span>✓ Career Roadmaps</span>
                             </div>
                         </div>
 
@@ -217,8 +220,8 @@ export default function HomePage() {
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </PageContainer>
+            </Section>
 
             {/* Stats */}
             <HomeStats />
