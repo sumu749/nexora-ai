@@ -24,6 +24,7 @@ import { api } from "@/lib/api";
 import type { Course } from "@skillforge/shared";
 import HomeStats from "@/components/home/stats";
 import HomeCategories from "@/components/home/categories";
+import HomeTestimonials from "@/components/home/testimonials";
 
 const heroSlides = [
     {
@@ -381,74 +382,7 @@ export default function HomePage() {
             </section>
 
             {/* Testimonials */}
-            <section className="py-20 bg-muted/30">
-                <div className="container">
-                    <div className="text-center max-w-xl mx-auto mb-14">
-                        <h2 className="text-3xl font-bold tracking-tight mb-3">
-                            What Learners Say
-                        </h2>
-                        <p className="text-muted-foreground">
-                            Real outcomes from real SkillForge students.
-                        </p>
-                    </div>
-                    <div className="grid md:grid-cols-3 gap-6">
-                        {[
-                            {
-                                name: "Jordan Lee",
-                                role: "Frontend Developer",
-                                text: "The React course and AI tutor combo helped me land my first dev job in 4 months.",
-                            },
-                            {
-                                name: "Emily Watson",
-                                role: "Cloud Engineer",
-                                text: "Passed AWS Solutions Architect on the first try. The labs are incredibly practical.",
-                            },
-                            {
-                                name: "Chris Anderson",
-                                role: "AI Engineer",
-                                text: "Built a production RAG chatbot using exactly what I learned in the Generative AI course.",
-                            },
-                        ].map((t) => (
-                            <Card
-                                key={t.name}
-                                interactive
-                                className="p-6 relative"
-                            >
-                                <span className="absolute top-5 right-6 text-5xl font-serif text-primary/10 select-none leading-none">
-                                    &rdquo;
-                                </span>
-                                <div className="flex gap-1 mb-4">
-                                    {Array.from({ length: 5 }).map((_, i) => (
-                                        <Star
-                                            key={i}
-                                            className="h-4 w-4 fill-accent text-accent"
-                                        />
-                                    ))}
-                                </div>
-                                <p className="text-sm mb-5 leading-relaxed relative z-10">
-                                    &ldquo;{t.text}&rdquo;
-                                </p>
-                                <div className="flex items-center gap-3 pt-4 border-t">
-                                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary text-white text-xs font-semibold shrink-0">
-                                        {t.name
-                                            .split(" ")
-                                            .map((n) => n[0])
-                                            .join("")}
-                                    </div>
-                                    <div>
-                                        <div className="font-semibold text-sm">
-                                            {t.name}
-                                        </div>
-                                        <div className="text-xs text-muted-foreground">
-                                            {t.role}
-                                        </div>
-                                    </div>
-                                </div>
-                            </Card>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <HomeTestimonials />
 
             {/* Categories */}
             <HomeCategories />
