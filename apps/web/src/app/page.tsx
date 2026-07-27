@@ -1,21 +1,12 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-    CourseCard,
-    CourseCardSkeleton,
-} from "@/components/courses/course-card";
-import { api } from "@/lib/api";
-import type { Course } from "@skillforge/shared";
 import HomeStats from "@/components/home/stats";
 import HomeCategories from "@/components/home/categories";
 import HomeTestimonials from "@/components/home/testimonials";
-import { PageContainer, Section, SectionHeading } from "@/components/shared";
 import { HomeFeatures } from "@/components/home/features";
 import { HomeHero } from "@/components/home/hero";
 import { HomeFeaturedCourses } from "@/components/home/featured-courses";
