@@ -18,18 +18,9 @@ import HomeTestimonials from "@/components/home/testimonials";
 import { PageContainer, Section, SectionHeading } from "@/components/shared";
 import { HomeFeatures } from "@/components/home/features";
 import { HomeHero } from "@/components/home/hero";
+import { HomeFeaturedCourses } from "@/components/home/featured-courses";
 
 export default function HomePage() {
-    const { data, isLoading } = useQuery({
-        queryKey: ["featured-courses"],
-        queryFn: async () => {
-            const res = await api.get("/courses", {
-                params: { limit: 4, sort: "popular" },
-            });
-            return res.data as { data: Course[] };
-        },
-    });
-
     return (
         <>
             {/* Hero */}
@@ -39,36 +30,7 @@ export default function HomePage() {
             <HomeStats />
 
             {/* Featured Courses */}
-            <Section>
-                <PageContainer>
-                    <div className="flex items-center justify-between mb-8">
-                        <SectionHeading
-                            eyebrow="Trending Now"
-                            title="Popular Courses"
-                            description="Start with our most-loved programs"
-                            className="!text-left !mx-0 max-w-none"
-                        />
-                        <Link href="/explore">
-                            <Button
-                                size="lg"
-                                className="rounded-xl px-6 font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-                            >
-                                View All
-                                <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                            </Button>
-                        </Link>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {isLoading
-                            ? Array.from({ length: 4 }).map((_, i) => (
-                                  <CourseCardSkeleton key={i} />
-                              ))
-                            : data?.data.map((course) => (
-                                  <CourseCard key={course.id} course={course} />
-                              ))}
-                    </div>
-                </PageContainer>
-            </Section>
+            <HomeFeaturedCourses />
 
             {/* AI Tutor Feature */}
             <HomeFeatures />
