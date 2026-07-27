@@ -3,7 +3,7 @@ import { PageContainer, Section } from "../shared";
 import { Button } from "../ui/button";
 import { ArrowRight, Briefcase, CheckCircle2, FileText } from "lucide-react";
 import { useEffect, useState } from "react";
-import { HERO_CONTENT, heroSlides } from "@/data/home/hero";
+import { HERO_CONTENT, HERO_TRUST_ITEMS, heroSlides } from "@/data/home/hero";
 
 export const HomeHero = () => {
     const [activeSlide, setActiveSlide] = useState(0);
@@ -69,14 +69,16 @@ export const HomeHero = () => {
                         </div>
 
                         {/* Trust Signals */}
-                        <div className="mt-8 flex flex-wrap gap-4 text-sm text-muted-foreground">
-                            <span>✓ AI Tutor</span>
-
-                            <span>✓ Interview Prep</span>
-
-                            <span>✓ Portfolio Projects</span>
-
-                            <span>✓ Career Roadmaps</span>
+                        <div className="mt-8 flex flex-wrap gap-3">
+                            {HERO_TRUST_ITEMS.map((item) => (
+                                <div
+                                    key={item}
+                                    className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-2 text-sm font-medium shadow-sm backdrop-blur"
+                                >
+                                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                                    {item}
+                                </div>
+                            ))}
                         </div>
                     </div>
 
