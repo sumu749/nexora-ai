@@ -51,14 +51,21 @@ export const HomeHero = () => {
                         {/* CTA */}
                         <div className="mt-8 flex flex-wrap gap-4">
                             <Link href="/explore">
-                                <Button size="lg" className="group shadow-glow">
+                                <Button
+                                    size="lg"
+                                    className="group h-12 rounded-xl px-6 font-semibold shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                                >
                                     Start Learning
                                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                                 </Button>
                             </Link>
 
                             <Link href="/dashboard/chat">
-                                <Button size="lg" variant="secondary">
+                                <Button
+                                    size="lg"
+                                    variant="outline"
+                                    className="h-12 rounded-xl border-2 bg-background/80 px-6 font-semibold backdrop-blur-sm transition-all duration-300 hover:border-primary hover:bg-primary/5"
+                                >
                                     Try AI Tutor
                                 </Button>
                             </Link>

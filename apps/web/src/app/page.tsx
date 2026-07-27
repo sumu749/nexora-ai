@@ -50,8 +50,8 @@ export default function HomePage() {
                         />
                         <Link href="/explore">
                             <Button
-                                variant="outline"
-                                className="group shadow-xs"
+                                size="lg"
+                                className="rounded-xl px-6 font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                             >
                                 View All
                                 <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
