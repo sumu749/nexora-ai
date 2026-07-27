@@ -3,7 +3,7 @@ import { PageContainer, Section } from "../shared";
 import { Button } from "../ui/button";
 import { ArrowRight, Briefcase, CheckCircle2, FileText } from "lucide-react";
 import { useEffect, useState } from "react";
-import { heroSlides } from "@/data/home/hero";
+import { HERO_CONTENT, heroSlides } from "@/data/home/hero";
 
 export const HomeHero = () => {
     const [activeSlide, setActiveSlide] = useState(0);
@@ -28,24 +28,21 @@ export const HomeHero = () => {
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
                                 <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
                             </span>
-                            Learn • Build • Get Hired
+                            {HERO_CONTENT.badge}
                         </span>
 
                         {/* Heading */}
                         <h1 className="text-4xl font-bold tracking-tight md:text-6xl">
-                            Build Your{" "}
+                            {HERO_CONTENT.title}{" "}
                             <span className="text-gradient">
-                                Developer Career
+                                {HERO_CONTENT.highlightedTitle}
                             </span>{" "}
-                            with AI
+                            {HERO_CONTENT.suffix}
                         </h1>
 
                         {/* Description */}
                         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-                            Master in-demand skills, build portfolio-ready
-                            projects, prepare for technical interviews, and
-                            accelerate your career with one AI-powered developer
-                            platform.
+                            {HERO_CONTENT.description}
                         </p>
 
                         {/* CTA */}
