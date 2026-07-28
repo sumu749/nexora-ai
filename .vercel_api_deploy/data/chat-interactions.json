@@ -1,0 +1,18 @@
+[
+  {
+    "id": "62217a71-6ea1-4e99-b196-4e43acce0230",
+    "conversationId": "096929da-0ae3-4dd6-8948-149e1654de65",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is React?"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm SkillForge AI Tutor (demo mode). Configure your **OPENAI_API_KEY** in `apps/api/.env` to enable live AI responses.\n\nMeanwhile, I can tell you that SkillForge offers courses in web development, data science, cloud computing, cybersecurity, and more. What would you like to learn today?"
+      }
+    ],
+    "createdAt": "2026-06-22T13:01:18.309Z",
+    "updatedAt": "2026-06-22T13:01:18.309Z"
+  }
+]

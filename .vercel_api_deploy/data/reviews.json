@@ -1,0 +1,56 @@
+[
+  {
+    "id": "389b6257-c089-4e0a-bdb2-b5bcc9525330",
+    "courseId": "0729df37-cb3f-495d-a966-b6d624bb15f8",
+    "userId": "user_1",
+    "userName": "Jordan Lee",
+    "rating": 5,
+    "comment": "Best React course I've taken. The Next.js App Router section alone was worth the price. Built my portfolio site using techniques from module 3.",
+    "createdAt": "2025-11-15T10:00:00.000Z"
+  },
+  {
+    "id": "b4d0b426-8f8c-4721-a607-b0f834ffc522",
+    "courseId": "0729df37-cb3f-495d-a966-b6d624bb15f8",
+    "userId": "user_2",
+    "userName": "Priya Sharma",
+    "rating": 5,
+    "comment": "Sarah explains complex concepts clearly. The Server Components chapter finally made everything click for me.",
+    "createdAt": "2025-12-02T14:30:00.000Z"
+  },
+  {
+    "id": "e1634f14-4a5a-4f0c-a297-2a47f83c2932",
+    "courseId": "4e01581d-770d-40c0-97c5-065f1370cc17",
+    "userId": "user_3",
+    "userName": "Michael Torres",
+    "rating": 4,
+    "comment": "Solid introduction to data science. The pandas section is comprehensive. Would love more advanced ML topics.",
+    "createdAt": "2025-10-20T09:15:00.000Z"
+  },
+  {
+    "id": "4788997f-5ab4-4ce1-bf8d-06840d254cdb",
+    "courseId": "e2bdca60-4450-48ba-a15c-e9c73f9559ce",
+    "userId": "user_4",
+    "userName": "Emily Watson",
+    "rating": 5,
+    "comment": "Passed my AWS Solutions Architect exam on the first try thanks to this course. Labs are excellent.",
+    "createdAt": "2025-11-28T16:45:00.000Z"
+  },
+  {
+    "id": "1cdc04ff-3fea-4ea1-a8bc-093f9963631f",
+    "courseId": "6fb578f9-0e18-4d66-ad19-9790843dab0b",
+    "userId": "user_5",
+    "userName": "Chris Anderson",
+    "rating": 5,
+    "comment": "The RAG pipeline project is fantastic. I deployed a chatbot for my company using exactly what I learned here.",
+    "createdAt": "2026-01-10T11:20:00.000Z"
+  },
+  {
+    "id": "29a85895-cbef-4226-bdb7-e06107913ec7",
+    "courseId": "6fb578f9-0e18-4d66-ad19-9790843dab0b",
+    "userId": "user_6",
+    "userName": "Sofia Martinez",
+    "rating": 5,
+    "comment": "Dr. Patel's prompt engineering techniques improved my AI app responses dramatically. Highly recommended.",
+    "createdAt": "2026-02-05T08:00:00.000Z"
+  }
+]

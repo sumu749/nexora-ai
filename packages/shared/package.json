@@ -12,6 +12,7 @@
     },
     "scripts": {
         "build": "tsc",
+        "vercel-build": "npm run build",
         "dev": "tsc --watch",
         "lint": "eslint . --ext .ts"
     },
