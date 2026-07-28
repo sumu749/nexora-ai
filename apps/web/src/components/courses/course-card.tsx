@@ -16,17 +16,17 @@ export function CourseCard({ course }: CourseCardProps) {
         <Link href={`/courses/${course.slug}`} className="group block h-full">
             <Card
                 interactive
-                className="h-full overflow-hidden flex flex-col transition-all duration-300 ease-smooth hover:border-primary/30 hover:shadow-lg"
+                className="h-full overflow-hidden flex flex-col rounded-3xl border transition-all duration-300 hover:-translate-y-2 hover:border-primary/30 hover:shadow-2xl"
             >
                 <div className="relative aspect-video w-full overflow-hidden bg-muted">
                     <Image
                         src={course.imageUrl}
                         alt={course.title}
                         fill
-                        className="object-cover transition-transform duration-500 ease-smooth group-hover:scale-105"
+                        className="object-cover transition-transform duration-500 ease-smooth group-hover:scale-110"
                         sizes="(max-width:768px) 100vw, 25vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     {course.featured && (
                         <span className="absolute top-3 left-3 inline-flex items-center gap-1 rounded-full bg-accent/95 px-3 py-1 text-xs font-semibold text-accent-foreground shadow-sm backdrop-blur-sm">
                             ★ Featured
@@ -45,7 +45,7 @@ export function CourseCard({ course }: CourseCardProps) {
                             {LEVEL_LABELS[course.level]}
                         </span>
                     </div>
-                    <h3 className="font-semibold line-clamp-2 leading-snug transition-colors duration-200 group-hover:text-primary">
+                    <h3 className="line-clamp-2 text-lg font-semibold leading-snug transition-colors duration-200 group-hover:text-primary">
                         {course.title}
                     </h3>
                     <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
