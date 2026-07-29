@@ -4,6 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "tsx watch src/index.ts",
+        "prebuild": "npm --prefix ../../packages/shared run build",
         "build": "tsc",
         "vercel-build": "npm run build",
         "start": "node dist/index.js",
