@@ -27,29 +27,7 @@ async function getApp(): Promise<express.Express> {
 
             app.use(
                 cors({
-                    origin: (origin, callback) => {
-                        if (!origin) return callback(null, true);
-                        const allowedOrigins = [
-                            ...config.webUrls,
-                            "https://skill-forge-ai-api.vercel.app",
-                            "http://localhost:3000",
-                        ];
-                        const isLocalhost =
-                            /^https?:\/\/localhost(:\d+)?$/.test(origin);
-                        const is127 = /^https?:\/\/127\.0\.0\.1(:\d+)?$/.test(
-                            origin,
-                        );
-
-                        if (
-                            allowedOrigins.includes(origin) ||
-                            (config.nodeEnv === "development" &&
-                                (isLocalhost || is127))
-                        ) {
-                            callback(null, true);
-                        } else {
-                            callback(new Error("Not allowed by CORS"));
-                        }
-                    },
+                    origin: true,
                     credentials: true,
                 }),
             );
