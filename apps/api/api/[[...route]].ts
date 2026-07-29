@@ -31,6 +31,7 @@ async function getApp(): Promise<express.Express> {
                         if (!origin) return callback(null, true);
                         const allowedOrigins = [
                             ...config.webUrls,
+                            "https://skill-forge-ai-api.vercel.app",
                             "http://localhost:3000",
                         ];
                         const isLocalhost =

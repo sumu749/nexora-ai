@@ -24,6 +24,7 @@ async function bootstrap() {
                 if (!origin) return callback(null, true);
                 const allowedOrigins = [
                     ...config.webUrls,
+                    "https://skill-forge-ai-api.vercel.app",
                     "http://localhost:3000",
                 ];
                 const isLocalhost = /^https?:\/\/localhost(:\d+)?$/.test(
