@@ -12,7 +12,7 @@ export function HomeFeaturedCourses() {
         queryKey: ["featured-courses"],
         queryFn: async () => {
             const res = await api.get("/courses", {
-                params: { limit: 4, sort: "popular" },
+                params: { limit: 3, sort: "popular" },
             });
             return res.data as { data: Course[] };
         },
@@ -37,9 +37,9 @@ export function HomeFeaturedCourses() {
                         </Button>
                     </Link>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {isLoading
-                        ? Array.from({ length: 4 }).map((_, i) => (
+                        ? Array.from({ length: 3 }).map((_, i) => (
                               <CourseCardSkeleton key={i} />
                           ))
                         : data?.data.map((course) => (
