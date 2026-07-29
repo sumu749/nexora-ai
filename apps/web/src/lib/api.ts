@@ -1,11 +1,12 @@
 import axios from "axios";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
-const browserApiBaseUrl =
-    typeof window !== "undefined"
-        ? `${window.location.protocol}//${window.location.host}`
-        : "";
-const BASE_URL = API_URL || browserApiBaseUrl || "http://localhost:4000";
+const DEFAULT_API_BASE_URL = "https://skill-forge-api.vercel.app";
+const isBrowser = typeof window !== "undefined";
+const isLocalhost =
+    isBrowser && /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname);
+const BASE_URL =
+    API_URL || (isLocalhost ? "http://localhost:4000" : DEFAULT_API_BASE_URL);
 
 function normalizeError(error: unknown) {
     if (error instanceof Error) return error.message;
@@ -41,7 +42,8 @@ export async function streamChat(
             ...(conversationId ? { conversationId } : {}),
         };
         const chatBaseUrl =
-            API_URL || browserApiBaseUrl || "http://localhost:4000";
+            API_URL ||
+            (isLocalhost ? "http://localhost:4000" : DEFAULT_API_BASE_URL);
         const response = await fetch(`${chatBaseUrl}/api/ai/chat`, {
             method: "POST",
             credentials: "include",
