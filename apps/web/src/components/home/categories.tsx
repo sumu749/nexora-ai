@@ -1,45 +1,44 @@
-import { HOME_CATEGORIES } from "@/data/home/categories";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import React from "react";
-import { Card } from "../ui/card";
-import { PageContainer, Section, SectionHeading } from "../shared";
+"use client";
 
-const HomeCategories = () => {
+import { HOME_CATEGORIES } from "@/data/home/categories";
+
+import { PageContainer, Section, SectionHeading } from "@/components/shared";
+
+import CategoryTile from "@/components/ui/category-tile";
+
+export default function HomeCategories() {
     return (
-        <Section>
-            <PageContainer>
+        <Section className="relative overflow-hidden py-24">
+            {/* Background */}
+            <div className="absolute inset-0 bg-mesh opacity-30" />
+
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#6D5DF6_0%,transparent_30%),radial-gradient(circle_at_bottom_right,#14B8A6_0%,transparent_30%)] opacity-10" />
+
+            <PageContainer className="relative">
                 <SectionHeading
                     eyebrow="Categories"
-                    title="Explore by Category"
-                    description="Find the track that matches where you want to go."
+                    title="Choose Your Learning Path"
+                    description="Explore technologies, build projects, and master the skills that power today's software industry."
                 />
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {HOME_CATEGORIES.map((cat) => (
-                        <Link
-                            key={cat}
-                            href={`/explore?search=${encodeURIComponent(
-                                cat.split(" ")[0],
-                            )}`}
-                            className="group"
-                        >
-                            <Card
-                                interactive
-                                className="p-5 text-center h-full flex flex-col items-center justify-center gap-2"
-                            >
-                                <span className="text-sm font-semibold">
-                                    {cat}
-                                </span>
-                                <span className="text-xs text-muted-foreground inline-flex items-center gap-1 opacity-0 -translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0">
-                                    Browse <ArrowRight className="h-3 w-3" />
-                                </span>
-                            </Card>
-                        </Link>
+
+                <div
+                    className="
+                        mt-20
+                        grid
+                        auto-rows-[240px]
+                        grid-cols-1
+                        gap-6
+
+                        md:grid-cols-2
+
+                        lg:grid-cols-4
+                    "
+                >
+                    {HOME_CATEGORIES.map((category) => (
+                        <CategoryTile key={category.id} {...category} />
                     ))}
                 </div>
             </PageContainer>
         </Section>
     );
-};
-
-export default HomeCategories;
+}
