@@ -49,7 +49,7 @@ export const HomeHowItWorks = () => {
                                 >
                                     {/* Giant Step Number */}
                                     <span className="pointer-events-none absolute -top-10 text-8xl font-black tracking-tight text-primary/[0.04] select-none">
-                                        0{item.step}
+                                        {item.step}
                                     </span>
 
                                     {/* Icon */}
