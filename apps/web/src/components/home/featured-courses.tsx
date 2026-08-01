@@ -56,61 +56,34 @@ export function HomeFeaturedCourses() {
                             ))}
                         </div>
                     ) : (
-                        <>
+                        <div className="relative">
                             <Carousel
                                 opts={{
                                     align: "start",
                                     loop: true,
+                                    slidesToScroll: 3,
                                 }}
                                 plugins={[autoplay.current]}
                                 controls={
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-3">
-                                            <CarouselPrev
-                                                className="
-                flex h-11 w-11 items-center justify-center
-                rounded-full
-                border
-                bg-background
-                text-lg
-                shadow-sm
-                transition-all
-                hover:border-primary
-                hover:bg-primary
-                hover:text-white
-            "
-                                            />
-
-                                            <CarouselNext
-                                                className="
-                flex h-11 w-11 items-center justify-center
-                rounded-full
-                border
-                bg-background
-                text-lg
-                shadow-sm
-                transition-all
-                hover:border-primary
-                hover:bg-primary
-                hover:text-white
-            "
-                                            />
-                                        </div>
+                                    <div className="mt-8 flex items-center justify-center gap-6">
+                                        <CarouselPrev className=" flex h-11 w-11 items-center justify-center rounded-full  border  bg-background text-lg shadow-sm  transition-all hover:border-primary hover:bg-primary hover:text-white" />
 
                                         <CarouselDots />
+
+                                        <CarouselNext className=" flex h-11 w-11 items-center justify-center rounded-full  border  bg-background text-lg shadow-sm  transition-all hover:border-primary  hover:bg-primary  hover:text-white " />
                                     </div>
                                 }
                             >
                                 {data?.data.map((course) => (
                                     <CarouselItem
                                         key={course.id}
-                                        className="basis-full md:basis-1/2 lg:basis-1/3"
+                                        className="basis-full md:basis-1/2 lg:basis-1/3 min-w-0"
                                     >
                                         <CourseCard course={course} />
                                     </CarouselItem>
                                 ))}
                             </Carousel>
-                        </>
+                        </div>
                     )}
                 </div>
             </PageContainer>

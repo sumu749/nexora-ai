@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import useEmblaCarousel, { EmblaOptionsType } from "embla-carousel-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type EmblaContextType = {
     embla: ReturnType<typeof useEmblaCarousel>[1] | null;
@@ -43,15 +44,29 @@ export function Carousel({
         };
     }, [emblaApi]);
 
+    useEffect(() => {
+        if (!emblaApi) return;
+
+        const handler = (e: KeyboardEvent) => {
+            if (e.key === "ArrowLeft") emblaApi.scrollPrev();
+            if (e.key === "ArrowRight") emblaApi.scrollNext();
+        };
+
+        window.addEventListener("keydown", handler);
+
+        return () => window.removeEventListener("keydown", handler);
+    }, [emblaApi]);
+
     return (
         <EmblaContext.Provider
             value={{ embla: emblaApi ?? null, selected, scrollSnaps }}
         >
             <div className={className}>
-                <div className="overflow-hidden" ref={emblaRef}>
-                    <div className="-ml-3 flex">{children}</div>
+                <div ref={emblaRef} className="overflow-hidden">
+                    <div className="flex -ml-6">{children}</div>
                 </div>
-                {controls ? <div className="mt-10">{controls}</div> : null}
+
+                {controls && <div className="mt-8">{controls}</div>}
             </div>
         </EmblaContext.Provider>
     );
@@ -66,9 +81,7 @@ export function CarouselItem({
 }) {
     return (
         <div
-            className={`min-w-0 flex-shrink-0 pl-3 ${
-                className ?? "basis-full"
-            }`}
+            className={`min-w-0 shrink-0 grow-0 basis-full pl-6 ${className ?? ""}`}
         >
             {children}
         </div>
@@ -77,26 +90,28 @@ export function CarouselItem({
 
 export function CarouselPrev({ className }: { className?: string }) {
     const { embla } = useEmblaContext();
+
     return (
         <button
-            onClick={() => embla && embla.scrollPrev()}
-            className={className}
+            onClick={() => embla?.scrollPrev()}
             aria-label="Previous"
+            className={`flex h-11 w-11 items-center justify-center rounded-full border bg-background shadow-md transition-all duration-300 hover:scale-105 hover:border-primary hover:bg-primary hover:text-white ${className}`}
         >
-            ‹
+            <ChevronLeft className="h-5 w-5" />
         </button>
     );
 }
 
 export function CarouselNext({ className }: { className?: string }) {
     const { embla } = useEmblaContext();
+
     return (
         <button
-            onClick={() => embla && embla.scrollNext()}
-            className={className}
+            onClick={() => embla?.scrollNext()}
             aria-label="Next"
+            className={`flex h-11 w-11 items-center justify-center rounded-full border bg-background shadow-md transition-all duration-300 hover:scale-105 hover:border-primary hover:bg-primary hover:text-white ${className}`}
         >
-            ›
+            <ChevronRight className="h-5 w-5" />
         </button>
     );
 }
@@ -106,12 +121,12 @@ export function CarouselDots() {
 
     return (
         <div className="flex items-center gap-2">
-            {scrollSnaps.map((_, idx) => (
+            {scrollSnaps.map((_, index) => (
                 <button
-                    key={idx}
-                    onClick={() => embla?.scrollTo(idx)}
+                    key={index}
+                    onClick={() => embla?.scrollTo(index)}
                     className={`rounded-full transition-all duration-300 ${
-                        selected === idx
+                        selected === index
                             ? "h-2 w-8 bg-primary"
                             : "h-2 w-2 bg-muted-foreground/30 hover:bg-primary/50"
                     }`}
