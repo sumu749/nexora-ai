@@ -199,4 +199,19 @@
             transform: translateY(-8px);
         }
     }
+
+    @keyframes marquee {
+        from {
+            transform: translateX(0%);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    .animate-marquee {
+        animation: marquee linear infinite;
+        will-change: transform;
+    }
 }
