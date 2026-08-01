@@ -55,7 +55,7 @@ export function TestimonialCard({ name, role, text }: Props) {
 
             {/* Testimonial */}
             <p className="relative z-10 min-h-[140px] text-[15px] leading-8 text-muted-foreground">
-                "{text}"
+                &quot;{text}&quot;
             </p>
 
             {/* Footer */}
