@@ -6,17 +6,28 @@ import { useQuery } from "@tanstack/react-query";
 import { Course } from "@skillforge/shared";
 import { api } from "@/lib/api";
 import { CourseCard, CourseCardSkeleton } from "../courses/course-card";
+import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
+import Carousel, {
+    CarouselItem,
+    CarouselDots,
+    CarouselPrev,
+    CarouselNext,
+} from "../ui/carousel";
 
 export function HomeFeaturedCourses() {
     const { data, isLoading } = useQuery({
         queryKey: ["featured-courses"],
         queryFn: async () => {
             const res = await api.get("/courses", {
-                params: { limit: 3, sort: "popular" },
+                // request a few more so carousel can paginate
+                params: { limit: 9, sort: "popular" },
             });
             return res.data as { data: Course[] };
         },
     });
+
+    const autoplay = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
     return (
         <Section>
             <PageContainer>
@@ -37,14 +48,70 @@ export function HomeFeaturedCourses() {
                         </Button>
                     </Link>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {isLoading
-                        ? Array.from({ length: 3 }).map((_, i) => (
-                              <CourseCardSkeleton key={i} />
-                          ))
-                        : data?.data.map((course) => (
-                              <CourseCard key={course.id} course={course} />
-                          ))}
+                <div>
+                    {isLoading ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {Array.from({ length: 6 }).map((_, i) => (
+                                <CourseCardSkeleton key={i} />
+                            ))}
+                        </div>
+                    ) : (
+                        <>
+                            <Carousel
+                                opts={{
+                                    align: "start",
+                                    loop: true,
+                                }}
+                                plugins={[autoplay.current]}
+                                controls={
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-3">
+                                            <CarouselPrev
+                                                className="
+                flex h-11 w-11 items-center justify-center
+                rounded-full
+                border
+                bg-background
+                text-lg
+                shadow-sm
+                transition-all
+                hover:border-primary
+                hover:bg-primary
+                hover:text-white
+            "
+                                            />
+
+                                            <CarouselNext
+                                                className="
+                flex h-11 w-11 items-center justify-center
+                rounded-full
+                border
+                bg-background
+                text-lg
+                shadow-sm
+                transition-all
+                hover:border-primary
+                hover:bg-primary
+                hover:text-white
+            "
+                                            />
+                                        </div>
+
+                                        <CarouselDots />
+                                    </div>
+                                }
+                            >
+                                {data?.data.map((course) => (
+                                    <CarouselItem
+                                        key={course.id}
+                                        className="basis-full md:basis-1/2 lg:basis-1/3"
+                                    >
+                                        <CourseCard course={course} />
+                                    </CarouselItem>
+                                ))}
+                            </Carousel>
+                        </>
+                    )}
                 </div>
             </PageContainer>
         </Section>
