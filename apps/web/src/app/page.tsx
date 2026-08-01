@@ -10,6 +10,7 @@ import HomeTestimonials from "@/components/home/testimonials";
 import { HomeFeatures } from "@/components/home/features";
 import { HomeHero } from "@/components/home/hero";
 import { HomeFeaturedCourses } from "@/components/home/featured-courses";
+import { HomeHowItWorks } from "@/components/home/HomeHowItWorks";
 
 export default function HomePage() {
     return (
@@ -27,62 +28,7 @@ export default function HomePage() {
             <HomeFeatures />
 
             {/* How It Works */}
-            <section className="py-20">
-                <div className="container">
-                    <div className="text-center max-w-xl mx-auto mb-14">
-                        <h2 className="text-3xl font-bold tracking-tight mb-3">
-                            How SkillForge Works
-                        </h2>
-                        <p className="text-muted-foreground">
-                            Three simple steps between you and your next skill.
-                        </p>
-                    </div>
-                    <div className="relative grid md:grid-cols-3 gap-8">
-                        <div className="hidden md:block absolute top-8 left-[16.5%] right-[16.5%] h-px bg-gradient-to-r from-primary/40 via-secondary/40 to-accent/40" />
-                        {[
-                            {
-                                step: "1",
-                                title: "Choose Your Path",
-                                desc: "Browse 13+ courses across web dev, data science, cloud, security, and AI.",
-                                accent: "from-primary to-primary/80",
-                            },
-                            {
-                                step: "2",
-                                title: "Learn with Experts",
-                                desc: "Follow structured modules with hands-on projects and real-world applications.",
-                                accent: "from-secondary to-secondary/80",
-                            },
-                            {
-                                step: "3",
-                                title: "Get AI Support",
-                                desc: "Ask your AI tutor anytime for explanations, debugging help, and study tips.",
-                                accent: "from-accent to-accent/80",
-                            },
-                        ].map((item) => (
-                            <Card
-                                key={item.step}
-                                interactive
-                                className="relative text-center p-8"
-                            >
-                                <div
-                                    className={cn(
-                                        "relative z-10 h-16 w-16 rounded-2xl bg-gradient-to-br text-white flex items-center justify-center text-2xl font-bold mx-auto mb-5 shadow-md",
-                                        item.accent,
-                                    )}
-                                >
-                                    {item.step}
-                                </div>
-                                <h3 className="font-semibold text-lg mb-2">
-                                    {item.title}
-                                </h3>
-                                <p className="text-sm text-muted-foreground leading-relaxed">
-                                    {item.desc}
-                                </p>
-                            </Card>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <HomeHowItWorks />
 
             {/* Testimonials */}
             <HomeTestimonials />
