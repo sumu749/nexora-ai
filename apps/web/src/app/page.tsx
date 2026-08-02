@@ -1,8 +1,4 @@
 "use client";
-import Link from "next/link";
-import { Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import HomeStats from "@/components/home/stats";
 import HomeCategories from "@/components/home/categories";
 import HomeTestimonials from "@/components/home/testimonials";
@@ -11,6 +7,7 @@ import { HomeHero } from "@/components/home/hero";
 import { HomeFeaturedCourses } from "@/components/home/featured-courses";
 import { HomeHowItWorks } from "@/components/home/howItWorks";
 import HomeNewsletter from "@/components/home/newsLetter";
+import HomeFAQ from "@/components/home/faq";
 
 export default function HomePage() {
     return (
@@ -38,6 +35,9 @@ export default function HomePage() {
 
             {/* Newsletter */}
             <HomeNewsletter />
+
+            {/* FAQ */}
+            <HomeFAQ />
         </>
     );
 }
