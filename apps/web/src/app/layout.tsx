@@ -7,6 +7,7 @@ import { QueryProvider } from "@/providers/query-provider";
 import { AppProviders } from "@/providers/app-providers";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { GlobalLoader } from "@/components/layout/global-loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -53,17 +54,19 @@ export default function RootLayout({
                     >
                         <QueryProvider>
                             <div className="flex min-h-screen flex-col">
-                                <Navbar />
-                                <main className="flex-1">
-                                    {children}
-                                    <Toaster
-                                        position="top-right"
-                                        richColors
-                                        closeButton
-                                        duration={3000}
-                                    />
-                                </main>
-                                <Footer />
+                                <GlobalLoader>
+                                    <Navbar />
+                                    <main className="flex-1">
+                                        {children}
+                                        <Toaster
+                                            position="top-right"
+                                            richColors
+                                            closeButton
+                                            duration={3000}
+                                        />
+                                    </main>
+                                    <Footer />
+                                </GlobalLoader>
                             </div>
                         </QueryProvider>
                     </ThemeProvider>

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { PageContainer, Section } from "../shared";
 import { Button } from "../ui/button";
