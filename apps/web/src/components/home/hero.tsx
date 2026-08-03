@@ -64,11 +64,11 @@ export const HomeHero = () => {
                     repeat: Infinity,
                     duration: 6,
                 }}
-                className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary blur-[150px]"
+                className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary blur-[150px] pointer-events-none"
             />
-            <div className="absolute inset-0 bg-mesh" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#6D5DF6_0%,transparent_35%),radial-gradient(circle_at_top_right,#14B8A6_0%,transparent_35%)] opacity-20" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+            <div className="absolute inset-0 pointer-events-none bg-mesh" />
+            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top_left,#6D5DF6_0%,transparent_35%),radial-gradient(circle_at_top_right,#14B8A6_0%,transparent_35%)] opacity-20" />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-background" />
             <PageContainer>
                 <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
                     {/* Left: copy */}
@@ -138,25 +138,20 @@ export const HomeHero = () => {
                                     scale: 0.98,
                                 }}
                             >
-                                <Link href="/explore">
-                                    <Button
-                                        size="lg"
-                                        className="group h-12 rounded-xl px-6 font-semibold shadow-lg shadow-primary/20 transition-all duration-300 hover:shadow-[0_20px_50px_rgba(109,93,246,.35)]"
-                                    >
-                                        Start Learning
-                                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                                    </Button>
+                                <Link
+                                    href="/explore"
+                                    className="group inline-flex h-12 items-center justify-center rounded-xl bg-primary px-6 font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 hover:bg-primary/90 hover:shadow-[0_20px_50px_rgba(109,93,246,.35)]"
+                                >
+                                    Start Learning
+                                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                                 </Link>
                             </motion.div>
 
-                            <Link href="/dashboard/chat">
-                                <Button
-                                    size="lg"
-                                    variant="outline"
-                                    className="h-12 rounded-xl bg-background/80 px-6 font-semibold backdrop-blur-sm transition-all duration-300 border-primary/30 hover:bg-primary/10 hover:scale-[1.02]"
-                                >
-                                    Try AI Tutor
-                                </Button>
+                            <Link
+                                href="/dashboard/chat"
+                                className="inline-flex h-12 items-center justify-center rounded-xl bg-background/80 px-6 font-semibold backdrop-blur-sm transition-all duration-300 border border-primary/30 hover:bg-primary/10 hover:scale-[1.02]"
+                            >
+                                Try AI Tutor
                             </Link>
                         </motion.div>
 
