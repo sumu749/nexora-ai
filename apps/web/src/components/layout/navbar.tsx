@@ -2,366 +2,142 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-    ChevronDown,
-    Menu,
-    Sparkles,
-    X,
-    BookOpen,
-    HelpCircle,
-    FileText,
-    Info,
-    User,
-} from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 import { isClerkEnabled } from "@/lib/clerk-config";
 import { ClerkNavbarAuth } from "./navbar-clerk";
 import { Logo } from "../navigation/logo";
+import { NavbarCTA } from "../navigation/navbar-cta";
 
-const publicLinks = [
+const navLinks = [
     { href: "/", label: "Home" },
     { href: "/explore", label: "Explore" },
     { href: "/about", label: "About" },
     { href: "/blog", label: "Blog" },
 ];
 
-const authLinks = [
-    { href: "/dashboard", label: "Dashboard" },
-    { href: "/dashboard/chat", label: "AI Tutor" },
-    { href: "/dashboard/profile", label: "Profile" },
-    { href: "/help", label: "Help" },
-];
-
-const dropdownSections = [
-    {
-        title: "Learning",
-        items: [
-            {
-                href: "/explore",
-                label: "Explore courses",
-                description: "Browse all AI learning paths",
-                icon: BookOpen,
-            },
-            {
-                href: "/dashboard/chat",
-                label: "AI Tutor",
-                description: "Get guided help and study support",
-                icon: Sparkles,
-            },
-            {
-                href: "/dashboard/profile",
-                label: "Your profile",
-                description: "Manage your account and progress",
-                icon: User,
-            },
-        ],
-    },
-    {
-        title: "Resources",
-        items: [
-            {
-                href: "/help",
-                label: "Help center",
-                description: "Find answers and support articles",
-                icon: HelpCircle,
-            },
-            {
-                href: "/blog",
-                label: "Blog",
-                description: "Read the latest AI training tips",
-                icon: FileText,
-            },
-            {
-                href: "/about",
-                label: "About SkillForge",
-                description: "Learn what makes our platform special",
-                icon: Info,
-            },
-        ],
-    },
-];
-
 export function Navbar() {
     const pathname = usePathname();
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);
-    const menuRef = useRef<HTMLDivElement | null>(null);
-
-    const links = isClerkEnabled
-        ? null
-        : [...publicLinks, ...authLinks].filter(
-              (link, index, self) =>
-                  self.findIndex((item) => item.href === link.href) === index,
-          );
-
-    const activeLinkHref = links
-        ? links.reduce<string | null>((current, link) => {
-              const match =
-                  pathname === link.href ||
-                  pathname.startsWith(link.href + "/");
-              if (!match) {
-                  return current;
-              }
-
-              if (!current || link.href.length > current.length) {
-                  return link.href;
-              }
-
-              return current;
-          }, null)
-        : null;
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 8);
-        onScroll();
-        window.addEventListener("scroll", onScroll, { passive: true });
+        const handleScroll = () => setScrolled(window.scrollY > 20);
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
-        if (!menuOpen) {
-            return;
-        }
-
-        const handleClickOutside = (event: MouseEvent) => {
-            if (
-                menuRef.current &&
-                !menuRef.current.contains(event.target as Node)
-            ) {
-                setMenuOpen(false);
-            }
-        };
-
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === "Escape") {
-                setMenuOpen(false);
-            }
-        };
-
-        document.addEventListener("mousedown", handleClickOutside);
-        document.addEventListener("keydown", handleKeyDown);
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-            document.removeEventListener("keydown", handleKeyDown);
-        };
-    }, [menuOpen]);
+    const isActive = (href: string) => pathname === href;
 
     return (
-        <header
-            className={cn(
-                "sticky top-0 z-50 w-full transition-all duration-300 ease-smooth",
-                scrolled
-                    ? "border-b bg-background/80 backdrop-blur-lg shadow-sm py-1.5"
-                    : "border-b border-transparent bg-background/40 backdrop-blur-sm py-3",
-            )}
-        >
-            <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-6">
-                <Link
-                    href="/"
-                    className="group flex items-center gap-2.5 font-bold text-xl"
-                >
-                    <Logo />
-                </Link>
+        <header className="sticky top-0 z-50 w-full">
+            <nav
+                className={cn(
+                    "relative mx-auto max-w-7xl px-4 py-4 transition-all duration-500 sm:px-6 lg:px-8",
+                    scrolled
+                        ? "border-b border-white/10 bg-background/80 shadow-xl shadow-black/10 backdrop-blur-2xl"
+                        : "bg-background/0",
+                )}
+            >
+                <div className="flex items-center justify-between">
+                    {/* Logo */}
+                    <Link href="/" className="flex shrink-0 items-center gap-2">
+                        <Logo />
+                    </Link>
 
-                <nav className="hidden md:flex items-center gap-6">
-                    {isClerkEnabled ? (
-                        <ClerkNavbarAuth variant="links" />
-                    ) : (
-                        <>
-                            <div className="relative" ref={menuRef}>
-                                <button
-                                    type="button"
-                                    onClick={() => setMenuOpen(!menuOpen)}
-                                    className="inline-flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
-                                >
-                                    Explore menu
-                                    <ChevronDown className="h-4 w-4" />
-                                </button>
-
-                                {menuOpen && (
-                                    <div className="absolute left-0 top-full z-50 mt-3 w-[30rem] overflow-hidden rounded-2xl border border-border bg-card p-5 shadow-xl animate-in-up">
-                                        <div className="grid gap-6 lg:grid-cols-2">
-                                            {dropdownSections.map((section) => (
-                                                <div key={section.title}>
-                                                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/80">
-                                                        {section.title}
-                                                    </p>
-                                                    <div className="mt-3 space-y-1">
-                                                        {section.items.map(
-                                                            (item) => {
-                                                                const Icon = (
-                                                                    item as any
-                                                                ).icon;
-                                                                return (
-                                                                    <Link
-                                                                        key={
-                                                                            item.href
-                                                                        }
-                                                                        href={
-                                                                            item.href
-                                                                        }
-                                                                        onClick={() =>
-                                                                            setMenuOpen(
-                                                                                false,
-                                                                            )
-                                                                        }
-                                                                        className="group flex items-start gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-primary/5"
-                                                                    >
-                                                                        <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground transition-colors group-hover:bg-primary/10 group-hover:text-primary">
-                                                                            {Icon ? (
-                                                                                <Icon className="h-4 w-4" />
-                                                                            ) : (
-                                                                                <Sparkles className="h-4 w-4" />
-                                                                            )}
-                                                                        </span>
-                                                                        <span>
-                                                                            <span className="block text-sm font-medium leading-tight group-hover:text-primary transition-colors">
-                                                                                {
-                                                                                    item.label
-                                                                                }
-                                                                            </span>
-                                                                            <span className="block text-xs text-muted-foreground mt-0.5">
-                                                                                {
-                                                                                    item.description
-                                                                                }
-                                                                            </span>
-                                                                        </span>
-                                                                    </Link>
-                                                                );
-                                                            },
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                        <div className="mt-4 rounded-xl bg-gradient-to-br from-secondary/10 to-secondary/5 p-4 border border-secondary/10">
-                                            <p className="text-sm font-semibold">
-                                                New learner?
-                                            </p>
-                                            <p className="text-sm text-muted-foreground mt-0.5">
-                                                Create an account to save
-                                                progress and access your
-                                                personalized dashboard.
-                                            </p>
-                                            <Link
-                                                href="/sign-up"
-                                                onClick={() =>
-                                                    setMenuOpen(false)
-                                                }
-                                                className="mt-2 inline-flex items-center text-sm font-medium text-primary hover:underline"
-                                            >
-                                                Start for free →
-                                            </Link>
-                                        </div>
-                                    </div>
+                    {/* Desktop Navigation */}
+                    <div className="hidden items-center gap-8 lg:flex">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                className={cn(
+                                    "group relative text-sm font-medium tracking-[0.01em] transition-colors duration-300",
+                                    isActive(link.href)
+                                        ? "text-primary"
+                                        : "text-muted-foreground hover:text-foreground",
                                 )}
-                            </div>
-
-                            {links
-                                ?.filter((link) => link.label !== "Explore")
-                                .map((link) => {
-                                    const isActive =
-                                        activeLinkHref === link.href;
-                                    return (
-                                        <Link
-                                            key={link.href}
-                                            href={link.href}
-                                            className={cn(
-                                                "text-sm font-medium transition-colors hover:text-primary",
-                                                isActive
-                                                    ? "text-primary"
-                                                    : "text-muted-foreground",
-                                            )}
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    );
-                                })}
-                        </>
-                    )}
-                </nav>
-
-                <div className="flex items-center gap-2">
-                    <ThemeToggle />
-                    {isClerkEnabled ? (
-                        <ClerkNavbarAuth variant="auth" />
-                    ) : (
-                        <>
-                            <Link href="/sign-in">
-                                <Button size="sm">Sign In</Button>
+                            >
+                                {link.label}
+                                <span
+                                    className={cn(
+                                        "absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary/60 to-violet-500/40 transition-all duration-300",
+                                        isActive(link.href)
+                                            ? "w-full"
+                                            : "w-0 group-hover:w-full",
+                                    )}
+                                />
                             </Link>
-                            <Link href="/sign-up" className="hidden sm:block">
-                                <Button size="sm" variant="secondary">
-                                    Get Started
-                                </Button>
-                            </Link>
-                        </>
-                    )}
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="md:hidden"
-                        onClick={() => setMobileOpen(!mobileOpen)}
-                    >
-                        {mobileOpen ? (
-                            <X className="h-5 w-5" />
+                        ))}
+                    </div>
+
+                    {/* Right Actions */}
+                    <div className="flex items-center gap-3 sm:gap-4">
+                        <ThemeToggle />
+                        {isClerkEnabled ? (
+                            <ClerkNavbarAuth variant="auth" />
                         ) : (
-                            <Menu className="h-5 w-5" />
-                        )}
-                    </Button>
-                </div>
-            </div>
-
-            {mobileOpen && (
-                <div className="border-t md:hidden">
-                    <nav className="container flex flex-col gap-2 py-4">
-                        {(() => {
-                            const mobileLinks = links || publicLinks;
-                            const activeMobileLinkHref = mobileLinks.reduce<
-                                string | null
-                            >((current, link) => {
-                                const match =
-                                    pathname === link.href ||
-                                    pathname.startsWith(link.href + "/");
-                                if (!match) {
-                                    return current;
-                                }
-
-                                if (
-                                    !current ||
-                                    link.href.length > current.length
-                                ) {
-                                    return link.href;
-                                }
-
-                                return current;
-                            }, null);
-
-                            return mobileLinks.map((link) => {
-                                const isActive =
-                                    activeMobileLinkHref === link.href;
-                                return (
-                                    <Link
-                                        key={link.href}
-                                        href={link.href}
-                                        onClick={() => setMobileOpen(false)}
-                                        className={cn(
-                                            "px-2 py-2 text-sm font-medium rounded-xl transition-colors",
-                                            isActive
-                                                ? "bg-primary text-primary-foreground"
-                                                : "text-muted-foreground hover:text-primary hover:bg-muted",
-                                        )}
+                            <>
+                                <Link
+                                    href="/sign-in"
+                                    className="hidden sm:block"
+                                >
+                                    <Button
+                                        variant="ghost"
+                                        className="font-medium tracking-[0.01em] transition-all duration-300 hover:bg-primary/10 hover:text-primary"
                                     >
-                                        {link.label}
-                                    </Link>
-                                );
-                            });
-                        })()}
-                    </nav>
+                                        Sign In
+                                    </Button>
+                                </Link>
+                                <NavbarCTA
+                                    href="/dashboard"
+                                    label="Get Started"
+                                />
+                            </>
+                        )}
+
+                        {/* Mobile Menu Toggle */}
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="lg:hidden transition-all duration-300 hover:bg-primary/10"
+                            onClick={() => setMobileOpen(!mobileOpen)}
+                        >
+                            {mobileOpen ? (
+                                <X className="h-5 w-5" />
+                            ) : (
+                                <Menu className="h-5 w-5" />
+                            )}
+                        </Button>
+                    </div>
                 </div>
-            )}
+
+                {/* Mobile Navigation */}
+                {mobileOpen && (
+                    <div className="border-t border-white/10 pt-4 sm:hidden">
+                        <div className="flex flex-col gap-1">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() => setMobileOpen(false)}
+                                    className={cn(
+                                        "group rounded-lg px-4 py-2.5 text-sm font-medium tracking-[0.01em] transition-all duration-300",
+                                        isActive(link.href)
+                                            ? "bg-gradient-to-r from-primary/20 to-violet-500/10 text-primary"
+                                            : "text-muted-foreground hover:bg-primary/10 hover:text-foreground",
+                                    )}
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </nav>
         </header>
     );
 }
