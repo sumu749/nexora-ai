@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 
 import { NexoraLogo } from "@/components/icons/nexora-logo";
@@ -11,7 +10,7 @@ interface LogoProps {
 
 export function Logo({ iconOnly = false }: LogoProps) {
     return (
-        <Link href="/" className="group inline-flex items-center gap-3">
+        <div className="group inline-flex items-center gap-3">
             <motion.div
                 whileHover={{
                     rotate: 8,
@@ -36,6 +35,6 @@ export function Logo({ iconOnly = false }: LogoProps) {
                     </span>
                 </div>
             )}
-        </Link>
+        </div>
     );
 }

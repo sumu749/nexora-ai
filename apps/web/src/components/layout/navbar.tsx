@@ -19,6 +19,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 import { isClerkEnabled } from "@/lib/clerk-config";
 import { ClerkNavbarAuth } from "./navbar-clerk";
+import { Logo } from "../navigation/logo";
 
 const publicLinks = [
     { href: "/", label: "Home" },
@@ -161,13 +162,7 @@ export function Navbar() {
                     href="/"
                     className="group flex items-center gap-2.5 font-bold text-xl"
                 >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-secondary shadow-md transition-transform duration-300 ease-smooth group-hover:scale-105 group-hover:rotate-3">
-                        <Sparkles
-                            className="h-4.5 w-4.5 text-white"
-                            strokeWidth={2.25}
-                        />
-                    </span>
-                    <span className="tracking-tight">SkillForge AI</span>
+                    <Logo />
                 </Link>
 
                 <nav className="hidden md:flex items-center gap-6">
