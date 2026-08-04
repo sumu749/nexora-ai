@@ -28,9 +28,11 @@ export function Logo({ iconOnly = false }: LogoProps) {
 
             {!iconOnly && (
                 <div className="leading-none">
-                    <h1 className="text-lg font-bold tracking-tight">Nexora</h1>
+                    <h1 className="text-[1.05rem] font-semibold tracking-[0.02em] text-foreground">
+                        Nexora
+                    </h1>
 
-                    <span className="text-[10px] font-medium uppercase tracking-[0.35em] text-muted-foreground">
+                    <span className="mt-0.5 block text-[10px] font-medium uppercase tracking-[0.35em] text-muted-foreground">
                         AI
                     </span>
                 </div>
