@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Sparkles, Twitter, Linkedin, Github } from "lucide-react";
+import { Twitter, Linkedin, Github } from "lucide-react";
+import { Logo } from "../navigation/logo";
 
 const footerLinks = {
     Platform: [
@@ -22,14 +23,8 @@ export function Footer() {
             <div className="container py-12">
                 <div className="grid gap-8 md:grid-cols-4">
                     <div className="space-y-4">
-                        <Link
-                            href="/"
-                            className="group flex items-center gap-2.5 font-bold text-lg"
-                        >
-                            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-secondary shadow-md transition-transform duration-300 ease-smooth group-hover:scale-105 group-hover:rotate-3">
-                                <Sparkles className="h-4.5 w-4.5 text-white" />
-                            </span>
-                            SkillForge AI
+                        <Link href="/" aria-label="Nexora AI home">
+                            <Logo />
                         </Link>
                         <p className="text-sm text-muted-foreground">
                             AI-powered learning platform helping you master
