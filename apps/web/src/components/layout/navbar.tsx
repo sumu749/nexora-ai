@@ -80,24 +80,17 @@ export function Navbar() {
                         {isClerkEnabled ? (
                             <ClerkNavbarAuth variant="auth" />
                         ) : (
-                            <>
-                                <Link
-                                    href="/sign-in"
-                                    className="hidden sm:block"
+                            <Link href="/sign-in" className="hidden sm:block">
+                                <Button
+                                    variant="ghost"
+                                    className="font-medium tracking-[0.01em] transition-all duration-300 hover:bg-primary/10 hover:text-primary"
                                 >
-                                    <Button
-                                        variant="ghost"
-                                        className="font-medium tracking-[0.01em] transition-all duration-300 hover:bg-primary/10 hover:text-primary"
-                                    >
-                                        Sign In
-                                    </Button>
-                                </Link>
-                                <NavbarCTA
-                                    href="/dashboard"
-                                    label="Get Started"
-                                />
-                            </>
+                                    Sign In
+                                </Button>
+                            </Link>
                         )}
+
+                        <NavbarCTA href="/dashboard" label="Get Started" />
 
                         {/* Mobile Menu Toggle */}
                         <Button
